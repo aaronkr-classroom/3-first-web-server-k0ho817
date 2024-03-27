@@ -8,17 +8,18 @@
  */
 const httpStatus = require('http-status-codes'),
   htmlContentType = {
-    "Content-Type" : "text/html"
-  },
+    "Content-Type": "text/html"
+  } ,
   // POST 및 GET 요청에 매핑된 라우트를 저장할 routes 객체의 정의
   routes = {
-    GET : {
-      "/info" : (req, res) => {
+    GET: {
+      "/info": (req, res) => {
         res.writeHead(httpStatus.OK, htmlContentType);
         res.end("Welcome to the INFO page!");
+
       }
     },
-    POST : {}
+    POST: {},
   };
 
 // 라우트에 따른 콜백 함수를 처리하기 위한 함수 handle의 생성
@@ -27,8 +28,8 @@ exports.handle = (req, res) => {
     if (routes[req.method][req.url]) {
       routes[req.method][req.url](req, res);
     } else {
-      res.writeHead(httpStatus.NOT_FOUND, htmlContentType);
-      res.end("<h1>404</h1><h2>FILE NOT FOUND</h2>");
+      res.writeHead(httpStatus.NOT_ROUND, htmlContentType);
+      res.end("<h1>404</h1><h2>File not found.</h2>");
     }
   } catch(error) {
     console.log("error: " + error);
@@ -40,7 +41,7 @@ exports.get = (url, action) => {
   routes["GET"][url] = action;
 };
 exports.post = (url, action) => {
-  routes["GET"][url] = action;
+  routes["POST"][url] = action;
 };
 
 // <<< 나머진 라우트 코드 입력 하십시오 >>>
