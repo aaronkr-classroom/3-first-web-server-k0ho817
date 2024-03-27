@@ -7,6 +7,9 @@
 
 const sendErrorResp = () => {
   // 에러 핸들링 함수 생성
+  if (error){
+    
+  }
 };
 
 http
